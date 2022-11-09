@@ -118,7 +118,7 @@ class semansim:
 
         trial_sent = input_sentence.split()
         for word in trial_sent:
-            if (word in poses) or (word not in self.model.wv.vocab):
+            if (word in self.poses) or (word not in self.model.wv.vocab):
                 new_sent.append(word)
             else:
                 new_sent.append(self.get_n_most_similar(word, n=1))
