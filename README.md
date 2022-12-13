@@ -9,3 +9,6 @@
 ### • in a list of words find an odd one
 ### • visualize words similarity 
 ### • swap each word in a sentence with the most similar one
+
+## gambler.txt – original text
+## new-text.txt – original text lemmatized and cleaned from punctuation with each sentence on a new line
