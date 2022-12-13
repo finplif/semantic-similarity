@@ -79,7 +79,7 @@ class semansim:
 
 
     def get_words(self):
-        self.output_text = 'new_text_words.txt'
+        self.output_text = 'new-text-words.txt'
         with open(self.output_text, 'w', encoding='utf-8') as f:
             for w in sorted(self.model.wv.vocab):
                 f.write("%s %s" % (w, '\n'))
