@@ -112,10 +112,12 @@ class semansim:
         new_sent = []
         if not input_sentence:
             i = random.randint(1, len(self.text))
+            print(i)
             input_sentence = self.lemmd_text[i]
         else:
             input_sentence = self.lemmatize(input_sentence)
-
+        print('input sentence is:', input_sentence)
+        
         trial_sent = input_sentence.split()
         for word in trial_sent:
             if (word in self.poses) or (word not in self.model.wv.vocab):
