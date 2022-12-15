@@ -1,30 +1,20 @@
-import re
-import gensim
-import logging
-import nltk.data
 import pprint
-from nltk.tokenize import word_tokenize
-from nltk.tokenize import sent_tokenize
-from gensim import corpora
-from pymorphy2 import MorphAnalyzer
-import pandas as pd
-import urllib.request
-from bs4 import BeautifulSoup
-from nltk.corpus import stopwords
-from gensim.models import word2vec
-from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
-# %matplotlib inline
 import random
-
+import re
 import warnings
-warnings.filterwarnings('ignore')
+import gensim
+import matplotlib.pyplot as plt
+from nltk.tokenize import sent_tokenize
+from nltk.tokenize import word_tokenize
+from pymorphy2 import MorphAnalyzer
+from sklearn.decomposition import PCA
 
+warnings.filterwarnings('ignore')
 pp = pprint.PrettyPrinter(indent=4)
 
 
 
-class semansim:
+class SemanSim:
     def __init__(self, text):
         self.text = text
         self.processed_text, self.lemmd_text, self.poses, self.file, self.data = self.lemmatize(self.text)
