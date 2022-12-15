@@ -4,7 +4,7 @@ This class combines various methods to linguistically analyze and play with text
 I use gensim, a Python library for topic modelling, document indexing and similarity retrieval with large corpora.
 
 ## My class allows to:
-* **lemmatize(new_text)** – lemmatize text
+* **lemmatize(new_text)** – substitute each word in text with its lemma
 * **modeltrain(size=300, window=5, min_count=5, iter=50)** – train model in accordance with set parameters
 * **get_num_words()** – get n most similar words for one chosen
 * **get_words()** – get all the words used in a text in an alphabetical order
