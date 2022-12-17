@@ -10,8 +10,8 @@ from pymorphy2 import MorphAnalyzer
 from sklearn.decomposition import PCA
 
 warnings.filterwarnings('ignore')
-pp = pprint.PrettyPrinter(indent=4)
 
+pp = pprint.PrettyPrinter(indent=4)
 
 
 class SemanSim:
@@ -19,12 +19,12 @@ class SemanSim:
         self.text = text
         self.processed_text, self.lemmd_text, self.poses, self.file, self.data = self.lemmatize(self.text)
 
-    def lemmatize(self, new_text):  # converting a text into a lemmatized text
+    def lemmatize(self, new_text):
         morph = MorphAnalyzer()
         words = []
         # lemmd_sent = []
         lemmd_text = []
-        poses = []  # we need this for the last part
+        poses = []
 
         with open(new_text, encoding='utf-8') as f:
             text = f.read()
@@ -56,17 +56,15 @@ class SemanSim:
         data = gensim.models.word2vec.LineSentence(f)
         return (text, lemmd_text, poses, f, data)
 
-
-    def modeltrain(self, size=300, window=5, min_count=5, iter=50):  # model is learning new vectors with pointed parameters
+    def modeltrain(self, size=300, window=5, min_count=5,
+                   iter=50):  # model is learning new vectors with pointed parameters
         self.model = gensim.models.Word2Vec(self.data, size=size, window=window, min_count=min_count, iter=iter)
         self.model.init_sims(replace=True)
         self.model_path = 'model.bin'
         self.model.wv.save_word2vec_format(self.model_path, binary=True)
 
-
     def get_num_words(self):
         return len(self.model.wv.vocab)
-
 
     def get_words(self):
         self.output_text = 'new-text-words.txt'
@@ -74,20 +72,16 @@ class SemanSim:
             for w in sorted(self.model.wv.vocab):
                 f.write("%s %s" % (w, '\n'))
 
-
     def get_n_most_similar(self, word, n=5):  # get n most similar words
         return self.model.wv.most_similar(word, topn=n)
-
 
     def get_semantic_proportion(self, positives, negatives):
         return self.model.wv.most_similar(positive=positives, negative=negatives)[0][0]
 
-
     def odd_one_out(self, line):
         return self.model.wv.doesnt_match(line.split())
 
-
-    def visualize_vector_similarity(self, words):  #visualization of similar words by their vectors
+    def visualize_vector_similarity(self, words):  # visualization of similar words by their vectors
         X = self.model[words]
         pca = PCA(n_components=2)
         coords = pca.fit_transform(X)
@@ -97,17 +91,14 @@ class SemanSim:
             plt.annotate(word, xy=(coords[i, 0], coords[i, 1]))
         plt.show()
 
-
     def words_swap(self, input_sentence=''):  # we swap each original word with the most similar one
         new_sent = []
         if not input_sentence:
             i = random.randint(1, len(self.text))
-            print(i)
             input_sentence = self.lemmd_text[i]
         else:
             input_sentence = self.lemmatize(input_sentence)
         print('input sentence is:', input_sentence)
-        
         trial_sent = input_sentence.split()
         for word in trial_sent:
             if (word in self.poses) or (word not in self.model.wv.vocab):
@@ -117,3 +108,4 @@ class SemanSim:
 
         sent = ' '.join(new_sent)
         return sent
+
