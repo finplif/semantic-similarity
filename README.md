@@ -1,7 +1,7 @@
 # Semantic similarity
 
 This class combines various methods to linguistically analyze and play with text. 
-I use gensim, a Python library for topic modelling, document indexing and similarity retrieval with large corpora.
+I use gensim and nltk, Python libraries for morphological analysis, topic modelling, document indexing and similarity retrieval with large corpora.
 
 ## My class allows to:
 * **lemmatize(new_text)** – substitute each word in text with its lemma
