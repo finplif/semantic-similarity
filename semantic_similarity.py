@@ -100,20 +100,17 @@ class SemanSim:
             plt.annotate(word, xy=(coords[i, 0], coords[i, 1]))
         plt.show()
 
-    def words_swap(self, input_sentence=''):  # we swap each word in the original text with the most similar one
+    def words_swap(self):  # we swap each word in the original text with the most similar one
         new_sent = []
-        if not input_sentence:
-            i = random.randint(1, len(self.text))
-            orig_sentence = self.lemmd_text[i]
-        else:
-            orig_sentence = self.lemmatize(input_sentence)
+        i = random.randint(1, len(self.lemmd_text))
+        orig_sentence = self.lemmd_text[i]
+        print(orig_sentence)
         trial_sent = orig_sentence.split()
         for word in trial_sent:
             if word not in self.model_keys:
                 new_sent.append(word)
             else:
                 new_sent.append(self.get_n_most_similar(word, n=1)[0][0])
-
         sent = ' '.join(new_sent)
         return orig_sentence, sent
 
