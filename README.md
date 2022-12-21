@@ -6,7 +6,7 @@ I use gensim, a Python library for topic modelling, document indexing and simila
 ## My class allows to:
 * **lemmatize(new_text)** – substitute each word in text with its lemma
 * **modeltrain(vector_size=300, window=5, min_count=5, epochs=50)** – train model in accordance with set parameters
-* **get_num_words()** – get n most similar words for one chosen
+* **get_num_words()** – return a number of words in model created
 * **get_words()** – get all the words used in a text in an alphabetical order
 * **get_n_most_similar(word, n=5)** – get a number of the most similar words
 * **get_semantic_proportion(positives, negatives)** – get semantic proportion for a chosen word
